@@ -1,5 +1,5 @@
-/*.pem
-/.env
+*.pem
+.env
 datasets
 modules
 notebooks
