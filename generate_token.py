@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env python3
 import IPython as IPython
 
 if __name__ == "__main__":

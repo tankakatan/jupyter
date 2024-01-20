@@ -1,0 +1,21 @@
+version: '3'
+services:
+  pytorch-notebook:
+    image: quay.io/jupyter/pytorch-notebook:lab-4.0.10
+    container_name: pytorch_notebook
+    volumes:
+      - ${LOCAL_WORKING_DIR}:/home/jovyan/work
+      - ${LOCAL_DATASETS}:/home/jovyan/work/datasets
+      - ${LOCAL_MODULES}:/home/jovyan/work/modules
+      - ${LOCAL_SSL_CERTS}:/etc/ssl/notebook
+    ports:
+      - ${PORT}:8888
+    environment:
+      GRANT_SUDO: yes
+      NB_UID: ${CURRENT_UID}
+      NB_GID: ${CURRENT_GID}
+      CHOWN_HOME: 'yes'
+      CHOWN_HOME_OPTS: -R
+    command: "start-notebook.py \
+      --NotebookApp.password=${ACCESS_TOKEN} \
+      --NotebookApp.certfile=/etc/ssl/notebook/jupyter.pem"

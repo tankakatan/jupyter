@@ -56,7 +56,8 @@ services:
 # Set permissions for the container:
 #   sudo chown -R 1000 ${LOCAL_WORKING_DIR}
 
-LOCAL_WORKING_DIR=/data/jupyter/notebooks
+BASE_DIR=/Users/denisvoropaev/Developer/jupyter
+LOCAL_WORKING_DIR="$BASE_DIR/notebooks"
 
 # Generate an access token like this
 #   import IPython as IPython
@@ -70,16 +71,21 @@ ACCESS_TOKEN=sha1:d4c78fe19cb5:0c8f830971d52da9d74b9985a8b87a2b80fc6e6a
 PORT=8888
 
 # Provide data sets
-LOCAL_DATASETS=/data/jupyter/datasets
+LOCAL_DATASETS="$BASE_DIR/datasets"
 
 # Provide local modules
-LOCAL_MODULES=/home/git/python_modules
+LOCAL_MODULES="$BASE_DIR/modules"
 
 # SSL
 # Generate cert like this:
 #   openssl req -x509 -nodes -newkey rsa:2048 -keyout jupyter.pem -out jupyter.pem
 # Copy the jupyter.pem file into the location below.
-LOCAL_SSL_CERTS=/opt/ssl-certs/jupyter
+LOCAL_SSL_CERTS="$BASE_DIR"
+
+# id -u $(whoami)
+CURRENT_UID=501
+# id -g $(whoami)
+CURRENT_GID=20
 ```
 
 
