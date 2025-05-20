@@ -6,3 +6,8 @@ modules
 local/
 models/
 venv/
+
+notebooks/
+datasets/
+
+**/*/.ipynb_checkpoints/
