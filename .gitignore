@@ -1,6 +1,8 @@
 *.pem
 .env
-datasets
+
+__pycache__/
 modules
-notebooks
-local
+local/
+models/
+venv/

@@ -1,13 +1,13 @@
-version: '3'
 services:
   pytorch-notebook:
-    image: quay.io/jupyter/pytorch-notebook:lab-4.0.10
+    image: quay.io/jupyter/pytorch-notebook:lab-4.4.2 # https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html#jupyter-pytorch-notebook
     container_name: pytorch_notebook
     volumes:
       - ${LOCAL_WORKING_DIR}:/home/jovyan/work
       - ${LOCAL_DATASETS}:/home/jovyan/work/datasets
       - ${LOCAL_MODULES}:/home/jovyan/work/modules
       - ${LOCAL_SSL_CERTS}:/etc/ssl/notebook
+      - ${LOCAL_MODELS}:/home/jovyan/work/models
     ports:
       - ${PORT}:8888
     environment:
@@ -16,6 +16,7 @@ services:
       NB_GID: ${CURRENT_GID}
       CHOWN_HOME: 'yes'
       CHOWN_HOME_OPTS: -R
+      HUGGINGFACE_HUB_TOKEN: ${HUGGINGFACE_HUB_TOKEN}
     command: "start-notebook.py \
       --NotebookApp.password=${ACCESS_TOKEN} \
       --NotebookApp.certfile=/etc/ssl/notebook/jupyter.pem"
